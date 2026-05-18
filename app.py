@@ -19,11 +19,22 @@ st.markdown("""
 .stApp {
     background: linear-gradient(180deg, #eef4ff 0%, #f7fbff 100%);
 }
-.block-container {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    max-width: 1300px;
+
+/* Main text */
+html, body, [class*="css"] {
+    color: #16324f;
 }
+
+p, li, label, div, span {
+    color: #16324f;
+}
+
+/* Headers */
+h1, h2, h3 {
+    color: #173b73 !important;
+}
+
+/* Cards */
 .card {
     background: white;
     border: 1px solid #d8e6ff;
@@ -32,6 +43,8 @@ st.markdown("""
     box-shadow: 0 8px 24px rgba(50, 90, 160, 0.08);
     margin-bottom: 16px;
 }
+
+/* Hero */
 .hero {
     background: linear-gradient(135deg, #163b73 0%, #2457a7 100%);
     color: white;
@@ -41,67 +54,92 @@ st.markdown("""
     box-shadow: 0 14px 34px rgba(20, 50, 110, 0.22);
 }
 .hero h1 {
-    color: white;
+    color: white !important;
     margin: 0;
 }
 .hero p {
-    color: #dbe8ff;
+    color: #dbe8ff !important;
     margin-top: 8px;
 }
-.slot-box {
-    border-radius: 18px;
-    padding: 16px;
-    text-align: center;
-    border: 2px dashed #b9d0ff;
-    min-height: 220px;
-    background: #f7fbff;
+
+/* Inputs */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea {
+    background-color: white !important;
+    color: #16324f !important;
 }
-.slot-free {
-    background: #f3fff6;
-    border: 2px dashed #8dd5a1;
+
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #6b88aa !important;
+    opacity: 1 !important;
 }
-.slot-full {
-    background: #fff4f4;
-    border: 2px dashed #e49a9a;
+
+/* Selects */
+div[data-baseweb="select"] > div {
+    background-color: white !important;
+    color: #16324f !important;
 }
-.slot-title {
+div[data-baseweb="select"] span {
+    color: #16324f !important;
+}
+
+/* File uploader / camera / widget labels */
+[data-testid="stFileUploader"] label,
+[data-testid="stCameraInput"] label,
+[data-testid="stNumberInput"] label,
+[data-testid="stTextInput"] label,
+[data-testid="stSelectbox"] label,
+[data-testid="stSlider"] label {
+    color: #173b73 !important;
+    font-weight: 600;
+}
+
+/* Metrics */
+[data-testid="stMetric"] {
+    background: white;
+    border: 1px solid #d8e6ff;
+    border-radius: 16px;
+    padding: 12px;
+}
+[data-testid="stMetricLabel"] {
+    color: #35557d !important;
+}
+[data-testid="stMetricValue"] {
+    color: #173b73 !important;
+}
+
+/* Tabs */
+button[data-baseweb="tab"] {
+    color: #35557d !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #173b73 !important;
     font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 10px;
 }
-.slot-state-free {
-    color: #15803d;
+
+/* Info/warning/success boxes text */
+.stAlert p, .stAlert div, .stAlert span {
+    color: #16324f !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, #163b73 0%, #2457a7 100%);
+    color: white !important;
+    border: none;
+    border-radius: 12px;
     font-weight: 700;
 }
-.slot-state-full {
-    color: #b91c1c;
-    font-weight: 700;
+.stButton > button:hover {
+    background: linear-gradient(135deg, #1b4688 0%, #2c66c0 100%);
+    color: white !important;
 }
-.car-emoji {
-    font-size: 4rem;
-    margin: 14px 0;
-}
-.park-emoji {
-    font-size: 3.2rem;
-    margin: 18px 0;
-}
-.status-pill {
-    display: inline-block;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-.status-full {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-.status-available {
-    background: #dcfce7;
-    color: #15803d;
-}
+
+/* General helper text */
 .small-note {
-    color: #45608c;
+    color: #45608c !important;
 }
 </style>
 """, unsafe_allow_html=True)
