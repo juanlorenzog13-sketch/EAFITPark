@@ -1,0 +1,7 @@
+streamlit
+paho-mqtt
+numpy
+pillow
+ultralytics
+torch
+torchvision
