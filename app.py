@@ -310,17 +310,32 @@ with tab1:
 with tab2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.subheader("Parqueadero real con cámara")
-    st.write("Toma una foto del parqueadero. La app cuenta cuántos carros detecta y decide si está lleno o si queda al menos un cupo.")
+    st.write("Toma una foto del parqueadero o sube una imagen. La app cuenta cuántos carros detecta y decide si está lleno o si queda al menos un cupo.")
 
     total_spaces = st.number_input("Número total de espacios disponibles", min_value=1, value=3, step=1)
-    picture = st.camera_input("Tomar foto del parqueadero")
 
-    if st.button("Analizar foto y actualizar Wokwi", use_container_width=True):
-        if picture is None:
-            st.warning("Primero toma una foto.")
+    col_cam, col_upload = st.columns(2)
+    with col_cam:
+        picture = st.camera_input("Tomar foto del parqueadero")
+    with col_upload:
+        uploaded_file = st.file_uploader(
+            "O subir una imagen",
+            type=["png", "jpg", "jpeg"]
+        )
+
+    if st.button("Analizar imagen y actualizar Wokwi", use_container_width=True):
+        image_source = None
+
+        if picture is not None:
+            image_source = io.BytesIO(picture.getvalue())
+        elif uploaded_file is not None:
+            image_source = uploaded_file
         else:
+            st.warning("Primero toma una foto o sube una imagen.")
+
+        if image_source is not None:
             try:
-                pil_img = Image.open(io.BytesIO(picture.getvalue())).convert("RGB")
+                pil_img = Image.open(image_source).convert("RGB")
 
                 with st.spinner("Detectando carros..."):
                     annotated, detected_cars, details = count_cars_in_image(pil_img, conf_threshold)
